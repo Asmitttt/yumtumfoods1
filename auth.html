@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order delicious food online from YumTum Foods - Fast delivery in your area">
+    <title>YumTum Foods - Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <nav aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="brand" aria-label="YumTum Foods homepage">
+                <i class="fas fa-utensils"></i> YumTum Foods
+            </a>
+            <button id="mobile-menu-button" aria-expanded="false" aria-label="Toggle menu">
+                <span class="hamburger">☰</span>
+            </button>
+            <ul id="main-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#" id="cart-button" role="button">
+                        <i class="fas fa-shopping-cart"></i> 
+                        <span id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+            <h1 id="hero-heading">Delicious Food Delivered Fast</h1>
+            <p>Order from your favorite restaurants</p>
+            <a href="#menu" class="btn btn-primary">Order Now</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="menu" aria-labelledby="menu-heading">
+            <div class="container">
+                <h2 id="menu-heading">Our Menu</h2>
+                <div class="menu-grid">
+                    <article class="menu-item">
+                        <img src="images/butter-chicken.jpg" alt="Butter Chicken">
+                        <div class="item-details">
+                            <h3>Butter Chicken</h3>
+                            <p class="description">Creamy tomato gravy with tender chicken</p>
+                            <p class="price">₹325</p>
+                            <button class="btn btn-add" data-item="Butter Chicken" data-price="325">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="menu-item">
+                        <img src="images/biryani.jpg" alt="Hyderabadi Biryani in bowl">
+                        <div class="item-details">
+                            <h3>Hyderabadi Biryani</h3>
+                            <p class="description">Fragrant rice with spices</p>
+                            <p class="price">₹275</p>
+                            <button class="btn btn-add" data-item="Hyderabadi Biryani" data-price="275">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="menu-item">
+                        <img src="images/paneer-tikka.jpg" alt="Paneer Tikka on skewers">
+                        <div class="item-details">
+                            <h3>Paneer Tikka</h3>
+                            <p class="description">Grilled cottage cheese with spices</p>
+                            <p class="price">₹245</p>
+                            <button class="btn btn-add" data-item="Paneer Tikka" data-price="245">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="menu-item">
+                        <img src="images/masala-dosa.jpg" alt="Masala Dosa on plate">
+                        <div class="item-details">
+                            <h3>Masala Dosa</h3>
+                            <p class="description">Crispy rice crepe with potato filling</p>
+                            <p class="price">₹175</p>
+                            <button class="btn btn-add" data-item="Masala Dosa" data-price="175">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-overlay"></div>
+            <div class="container">
+              <h2>About Us</h2>
+              <div class="about-content">
+                <div class="about-text">
+                  <p>We deliver delicious food right to your doorstep!</p>
+                  <p>Our chefs use traditional recipes with fresh ingredients daily.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        <section id="contact" class="compact-contact" aria-labelledby="contact-heading">
+            <div class="contact-bg-overlay"></div>
+            <div class="container">
+              <h2 id="contact-heading">Contact Us</h2>
+              <form id="contact-form" class="compact-form">
+                <div class="form-group">
+                  <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                  <textarea id="message" name="message" rows="3" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+                <p id="contact-message" class="message"></p>
+              </form>
+            </div>
+          </section>
+    </main>
+
+    <footer aria-labelledby="footer-heading">
+        <div class="container">
+            <h2 id="footer-heading" class="visually-hidden">Footer</h2>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; <span id="year"></span> YumTum Foods</p>
+                    <address>
+                        <p><i class="fas fa-phone"></i> +91 7873901626</p>
+                        <p><i class="fas fa-envelope"></i> asmitkumar7750@gmail.com</p>
+                    </address>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button id="close-cart" class="close-btn" aria-label="Close cart">
+                &times;
+            </button>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <p>Total: <span id="cart-total-price">₹0</span></p>
+                <button id="checkout-btn" class="btn btn-primary">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
